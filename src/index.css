@@ -1,0 +1,22 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --primary-bg: #263746;
+  --secondary-bg: #F3F1EC;
+  --box-color:#1F2937;
+  --card-bg: #DCE5E8;
+  --text-color: #263238;
+  --light-text: #F9FAFB;
+}
