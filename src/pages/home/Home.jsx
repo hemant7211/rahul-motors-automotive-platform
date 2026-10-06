@@ -51,7 +51,7 @@ function Home() {
   return (
     <>
       <main className="home-page">
-                                                                     {/* HERO SECTION */}
+        {/* HERO SECTION */}
         <section
           className="hero-section">
 
@@ -74,58 +74,44 @@ function Home() {
               <br />
               <span>MOTORS</span>
             </h1>
-
             <p className="hero-subtitle">
               Automotive Solutions
             </p>
-
             <p className="hero-brand">
               BY GLS GROUP
             </p>
-
           </div>
-
         </section>
-                                                                     {/* ABOUT SECTION */}
+        {/* ABOUT SECTION */}
         <section
           className={`about-section ${aboutVisible ? "show" : ""
             }`}
           ref={aboutRef}
         >
-
           <div className="about-image">
-
             <img
               src={spare1}
               alt="Rahul Motors"
             />
-
           </div>
-
           <div className="about-content">
-
             <p className="about-tagline">
               ABOUT RAHUL MOTORS
             </p>
-
             <h2>
               YOUR CAR, <span>OUR PASSION</span>
             </h2>
-
             <p className="about-description">
               From expert car repairs to premium detailing,
               Rahul Motors provides complete automotive
               solutions to keep your journey smooth.
             </p>
-
             <button className="about-btn">
               Explore Our Services →
             </button>
-
           </div>
-
         </section>
-                                                                     {/* services SECTION */}
+        {/* services SECTION */}
         <section
           className={`services-section ${servicesVisible ? "services-show" : ""
             }`}
@@ -223,7 +209,7 @@ function Home() {
             </div>
           </div>
         </section>
-                                                                     {/*  features section  pre owned cars */}
+        {/*  features section  pre owned cars */}
         <section
           className="features">
           <span>  <h1>⚙︎ ◈ ━━━ Pre-Owned Cars ━━━ ◈ ⚙︎</h1></span>
@@ -261,7 +247,7 @@ function Home() {
           </div>
 
         </section>
-                                                                     {/* washing section  auto detailing */}
+        {/* washing section  auto detailing */}
         <section
           className="wash">
           <h1>⚙︎ ── 🛠️ Auto Detailing 🛠️ ── ⚙︎</h1>
@@ -292,7 +278,7 @@ function Home() {
             </div>
           </div>
         </section>
-                                                                     {/* why you choose us */}
+        {/* why you choose us */}
         <section>
           <div className="choose">
             <h1>⚙︎ ── 🔧 Why Rahul Motors 🔧 ── ⚙︎</h1>
@@ -322,7 +308,7 @@ function Home() {
           </div>
 
         </section>
-                                                                     {/* customers reviews */}
+        {/* customers reviews */}
         <section className="review-section">
           <div className="review">
             <h1>⚙︎ ── 🔧 Client's Reviews 🔧 ── ⚙︎</h1>
@@ -353,7 +339,7 @@ function Home() {
 
 
         </section>
-                                                                     {/* contact us */}
+        {/* contact us */}
         <section className="service-enquiry-section">
           <div className="contact">
             <h1>⚙︎ ── 🔧 Service Enquiry 🔧 ── ⚙︎</h1>
@@ -379,33 +365,33 @@ function Home() {
                 <div className="form-group">
                   <label htmlFor="email">Email</label>
                   <input type="email" id="email" placeholder="Enter your email" />
-                </div> 
-                {/* Car Brand */} 
+                </div>
+                {/* Car Brand */}
                 <div className="form-group">
-                   <label htmlFor="car">Car Brand</label>
-                    <input type="text" id="car" placeholder="e.g. Hyundai, Tata, Maruti" /> 
-                    </div> 
-                    {/* Car Model */}
-                     <div className="form-group"> 
-                      <label htmlFor="model">Car Model</label>
-                       <input type="text" id="model" placeholder="e.g. Creta, Swift, Nexon" />
-                        </div> 
-                        {/* Message */}
-                         <div className="form-group">
-                           <label htmlFor="message">Message</label>
-                            <textarea id="message" placeholder="Tell us what service you need..." >
-                              </textarea>
-                              </div> 
-                              {/* Submit */}
-                               <div className="submit-box">
-                                 <button type="submit"> Submit Enquiry </button>
-                                  </div> 
-                                  </form> 
-                                  </div>
-                                   </div> 
-     </section>
+                  <label htmlFor="car">Car Brand</label>
+                  <input type="text" id="car" placeholder="e.g. Hyundai, Tata, Maruti" />
+                </div>
+                {/* Car Model */}
+                <div className="form-group">
+                  <label htmlFor="model">Car Model</label>
+                  <input type="text" id="model" placeholder="e.g. Creta, Swift, Nexon" />
+                </div>
+                {/* Message */}
+                <div className="form-group">
+                  <label htmlFor="message">Message</label>
+                  <textarea id="message" placeholder="Tell us what service you need..." >
+                  </textarea>
+                </div>
+                {/* Submit */}
+                <div className="submit-box">
+                  <button type="submit"> Submit Enquiry </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </section>
 
-                                                                         {/* footer */}
+        {/* footer */}
         <Footer />
       </main>
     </>
