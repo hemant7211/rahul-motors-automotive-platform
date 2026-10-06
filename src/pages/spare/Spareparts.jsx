@@ -104,12 +104,8 @@ function SpareParts() {
 const matchesPrice =
   priceRange === "all" ||
   (priceRange === "under500" && product.price < 500) ||
-  (priceRange === "500to1000" &&
-    product.price >= 500 &&
-    product.price <= 1000) ||
-  (priceRange === "1000to5000" &&
-    product.price > 1000 &&
-    product.price <= 5000) ||
+  (priceRange === "500to1000" && product.price >= 500 && product.price <= 1000) ||
+  (priceRange === "1000to5000" && product.price > 1000 && product.price <= 5000) ||
   (priceRange === "above5000" && product.price > 5000);
 
 const matchesAvailability =
