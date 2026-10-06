@@ -5,7 +5,7 @@ import Home from "./pages/home/Home";
 import Services from "./pages/services/Services";
 import Washing from "./pages/washing/Washing";
 import Modification from "./pages/modification/Modification";
-import SpareParts from "./pages/spare/SpareParts";
+import SpareParts from "./pages/spare/Spareparts";
 // import SpareProductDetails from "./pages/spare/SpareProductDetails";
 
 // function UsedCars() {
