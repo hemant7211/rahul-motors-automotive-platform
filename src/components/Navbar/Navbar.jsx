@@ -7,7 +7,7 @@ function Navbar() {
   return (
     <nav>
     <div className="brand">
-  <img src="logo.png" alt="logo"/>
+  <img src="logo.webp" alt="logo"/>
  
 </div>
      <ul className={isOpen ? "nav-links active" : "nav-links"}>

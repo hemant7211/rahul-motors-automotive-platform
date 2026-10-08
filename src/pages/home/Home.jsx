@@ -2,8 +2,8 @@ import { Wrench, ShieldCheck, BadgeIndianRupee, Headset } from "lucide-react";
 import { NavLink } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import "./Home.css";
-import home1 from "../../assets/home1.jpg";
-import spare1 from "../../assets/spare1.png";
+import home1 from "../../assets/home1.webp";
+import spare1 from "../../assets/spare1.webp";
 import "../services/Services";
 import Footer from "../../components/footer/Footer";
 function Home() {
@@ -122,7 +122,7 @@ function Home() {
 
             <div className="service-box">
               <img
-                src="/home/repair3.jpg"
+                src="/home/repair3.webp"
                 alt="Car Repair"
                 className="service-img"
               />
@@ -138,7 +138,7 @@ function Home() {
 
             <div className="service-box">
               <img
-                src="./services/washing.jpeg"
+                src="./services/washing.webp"
                 alt="Car Washing"
                 className="service-img"
               />
@@ -153,7 +153,7 @@ function Home() {
 
             <div className="service-box">
               <img
-                src="./services/modified.jpeg"
+                src="./services/modified.webp"
                 alt="Car Modification"
                 className="service-img"
               />
@@ -167,7 +167,7 @@ function Home() {
             </div>
             <div className="service-box">
               <img
-                src="./services/paint1.jpeg"
+                src="./services/paint1.webp"
                 alt="Car Painting"
                 className="service-img"
               />
@@ -181,7 +181,7 @@ function Home() {
             </div>
             <div className="service-box">
               <img
-                src="./services/spare1.jpeg"
+                src="./services/spare1.webp"
                 alt="Car Repair"
                 className="service-img"
               />
@@ -195,7 +195,7 @@ function Home() {
             </div>
             <div className="service-box">
               <img
-                src="./services/rent.jpeg"
+                src="./services/rent.webp"
                 alt="Car Repair"
                 className="service-img"
               />
@@ -214,32 +214,32 @@ function Home() {
           className="features">
           <span>  <h1>⚙︎ ◈ ━━━ Pre-Owned Cars ━━━ ◈ ⚙︎</h1></span>
           <div className="f-container">
-            <div className="f-box"><img src="./used/scorpio1.jpeg" /><div className="f-content"><h3>Car Sell & Rent</h3>
+            <div className="f-box"><img src="./used/scorpio1.webp" /><div className="f-content"><h3>Car Sell & Rent</h3>
               <p>Professional car repair and maintenance.</p>
               <a href="#contact" className="service-link">
                 Check Now →
               </a></div></div>
-            <div className="f-box"><img src="./used/fortuner1.jpeg" /><div className="f-content"><h3>Car Sell & Rent</h3>
+            <div className="f-box"><img src="./used/fortuner1.webp" /><div className="f-content"><h3>Car Sell & Rent</h3>
               <p>Professional car repair and maintenance.</p>
               <a href="#contact" className="service-link">
                 Check Now →
               </a></div></div>
-            <div className="f-box"><img src="./used/thar.jpeg" /><div className="f-content"><h3>Car Sell & Rent</h3>
+            <div className="f-box"><img src="./used/thar.webp" /><div className="f-content"><h3>Car Sell & Rent</h3>
               <p>Professional car repair and maintenance.</p>
               <a href="#contact" className="service-link">
                 Check Now →
               </a></div></div>
-            <div className="f-box"><img src="./used/swift.jpeg" /><div className="f-content"><h3>Car Sell & Rent</h3>
+            <div className="f-box"><img src="./used/swift.webp" /><div className="f-content"><h3>Car Sell & Rent</h3>
               <p>Professional car repair and maintenance.</p>
               <a href="#contact" className="service-link">
                 Check Now →
               </a></div></div>
-            <div className="f-box"><img src="./used/scorpio.jpeg" /><div className="f-content"><h3>Car Sell & Rent</h3>
+            <div className="f-box"><img src="./used/scorpio.webp" /><div className="f-content"><h3>Car Sell & Rent</h3>
               <p>Professional car repair and maintenance.</p>
               <a href="#contact" className="service-link">
                 Check Now →
               </a></div></div>
-            <div className="f-box"><img src="./used/audi.jpeg" /><div className="f-content"><h3>Car Sell & Rent</h3>
+            <div className="f-box"><img src="./used/audi.webp" /><div className="f-content"><h3>Car Sell & Rent</h3>
               <p>Professional car repair and maintenance.</p>
               <a href="#contact" className="service-link">
                 Check Now →
@@ -253,7 +253,7 @@ function Home() {
           <h1>⚙︎ ── 🛠️ Auto Detailing 🛠️ ── ⚙︎</h1>
           <div className="wash-container">
             <div className="wash-detail">
-              <img src="/home/washing.png" />
+              <img src="/home/washing.webp" />
               <h3>Premium Car Washing</h3>
               <p>Deep wash for a spotless shine.</p>
               <a href="#contact" className="book-btn">
@@ -261,7 +261,7 @@ function Home() {
               </a>
             </div>
             <div className="wash-detail">
-              <img src="/home/deepclean.png" />
+              <img src="/home/deepclean.webp" />
               <h3>Interior Deep Cleaning</h3>
               <p>Fresh, clean and hygienic car interiors.</p>
               <a href="#contact" className="book-btn">
@@ -269,7 +269,7 @@ function Home() {
               </a>
             </div>
             <div className="wash-detail">
-              <img src="/home/polish.png" />
+              <img src="/home/polish.webp" />
               <h3>Car Polishing & Detailing</h3>
               <p>Restore shine and protect your car's paint.</p>
               <a href="#contact" className="book-btn">

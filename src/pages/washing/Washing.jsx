@@ -31,7 +31,7 @@ const washingServices = [
       "Removes dust, dirt and road grime for a fresh, clean look.",
     description:
       "We thoroughly clean your car's exterior to remove dust, dirt, mud and road grime. Our team uses safe washing techniques and quality products to maintain your car's paint and finish.",
-    image: "/wash/exterior.jpeg",
+    image: "/wash/exterior.webp",
     included: [
       "Pressure Wash",
       "Foam Wash",
@@ -50,7 +50,7 @@ const washingServices = [
       "Deep cleaning for a fresh, hygienic and comfortable cabin.",
     description:
       "Give your car's cabin a fresh feel with detailed interior cleaning. We clean the dashboard, seats, floor, mats and other accessible interior areas.",
-    image: "/wash/interior.jpeg",
+    image: "/wash/interior.webp",
     included: [
       "Vacuum Cleaning",
       "Dashboard Cleaning",
@@ -69,7 +69,7 @@ const washingServices = [
       "Gentle yet effective foam cleaning for a spotless finish.",
     description:
       "Our foam wash helps loosen dirt and grime before the main cleaning process, reducing the need for harsh rubbing on the vehicle surface.",
-    image: "/wash/foam.jpeg",    
+    image: "/wash/foam.webp",    
     included: [
       "Pre-Rinse",
       "Premium Foam Application",
@@ -88,7 +88,7 @@ const washingServices = [
       "High-pressure wash for a deeper clean, even in hard-to-reach areas.",
     description:
       "Pressure washing helps remove accumulated dirt from exterior surfaces, wheel areas and other difficult-to-reach parts of the vehicle.",
-    image: "/wash/pressure.jpeg",
+    image: "/wash/pressure.webp",
     included: [
       "High Pressure Cleaning",
       "Wheel Area Cleaning",
@@ -107,7 +107,7 @@ const washingServices = [
       "Removes mud, salt and buildup from underneath the chassis.",
     description:
       "Underbody cleaning removes accumulated mud, dirt and road debris from underneath your vehicle, helping keep hard-to-see areas cleaner.",
-    image: "/wash/underbody.jpeg",
+    image: "/wash/underbody.webp",
     included: [
       "Underbody Pressure Wash",
       "Mud Removal",
@@ -126,7 +126,7 @@ const washingServices = [
       "Cleans and shines your tyres and alloy wheels.",
     description:
       "Your wheels collect a lot of road dust and brake residue. Our wheel and tyre cleaning focuses on removing visible dirt while giving the wheels a clean finish.",
-    image: "/wash/wheel.jpeg",
+    image: "/wash/wheel.webp",
     included: [
       "Wheel Cleaning",
       "Tyre Cleaning",
@@ -306,7 +306,7 @@ const Washing = () => {
 
         <img
           className="washing-hero-image"
-          src="/wash/exterior.jpeg"
+          src="/wash/exterior.webp"
           alt="Professional car washing service"
         />
 

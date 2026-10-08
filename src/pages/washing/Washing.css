@@ -511,7 +511,7 @@
       rgba(7, 17, 27, 0.92),
       rgba(7, 17, 27, 0.96)
     ),
-    url("/wash/foam.jpeg") center / cover;
+    url("/wash/foam.webp") center / cover;
 
   border-top: 1px solid #22303d;
 }
@@ -713,8 +713,7 @@
       rgba(7, 17, 27, 0.96),
       rgba(85, 47, 13, 0.45)
     ),
-    url("/wash/exterior.jpeg") center / cover;
-
+    url("/wash/exterior.webp") center / cover;
   border-top: 1px solid #d97706;
 }
 

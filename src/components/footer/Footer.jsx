@@ -35,7 +35,7 @@ function Footer() {
           {/* Replace with your transparent logo */}
           <Link to="/" className="rm-footer-logo">
             <img
-              src="/logo.png"
+              src="/logo.webp"
               alt="Rahul Motors by GLS Group"
             />
           </Link>

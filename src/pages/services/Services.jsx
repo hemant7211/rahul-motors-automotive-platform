@@ -10,6 +10,8 @@ import {
 } from "lucide-react";
 import "./Services.css";
 import Footer from "../../components/footer/Footer";
+
+
 const services = [
   {
     id: "repair",
@@ -17,7 +19,7 @@ const services = [
     title: "Car Repair & Maintenance",
     tags: "Engine • Brakes • AC • Electrical • Diagnostics",
     time: "2–4 Hours",
-     image: "/services/washing.jpeg",
+     image: "/services/washing.webp",
     description:
       "Complete repair and maintenance solutions to keep your vehicle safe, smooth and reliable.",
     included: [
@@ -42,7 +44,7 @@ const services = [
     title: "Denting & Painting",
     tags: "Dent Repair • Painting • Scratch Removal",
     time: "1–3 Days",
-    image: "/services/spare1.jpeg",
+    image: "/services/spare1.webp",
     description:
       "Restore your vehicle's original appearance with professional denting, painting and finishing.",
     included: [
@@ -65,7 +67,7 @@ const services = [
     title: "Cleaning & Detailing",
     tags: "Washing • Interior • Polishing • Detailing",
     time: "1–3 Hours",
-     image: "/services/paint1.jpeg",
+     image: "/services/paint1.webp",
     description:
       "Professional interior and exterior cleaning to give your vehicle a fresh and premium finish.",
     included: [
@@ -88,7 +90,7 @@ const services = [
     title: "Spare Parts & Modification",
     tags: "Spare Parts • Accessories • Modification",
     time: "Varies",
-    image: "/services/modified.jpeg",
+    image: "/services/modified.webp",
     description:
       "Genuine spare parts and professional modification solutions for performance, style and reliability.",
     included: [
