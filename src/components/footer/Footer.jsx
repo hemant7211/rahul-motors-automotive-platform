@@ -174,7 +174,7 @@ function Footer() {
 
             <div>
               <h4>Call Us</h4>
-              <p>+91 XXXXX XXXXX</p>
+              <p>+91 7027286512</p>
             </div>
           </div>
 
@@ -183,7 +183,7 @@ function Footer() {
 
             <div>
               <h4>Email Us</h4>
-              <p>your-email@example.com</p>
+              <p>hemantsaini7211@gmail.com</p>
             </div>
           </div>
 

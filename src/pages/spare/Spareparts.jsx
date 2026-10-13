@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
+
 import { Link } from "react-router-dom";
 import Products from "./Productdata";
 import "./Spareparts.css";
@@ -59,7 +60,7 @@ const categoryOptions = [
   { value: "All", label: "All Categories" },
   { value: "Brake", label: "Brake Parts" },
   { value: "Oil", label: "Engine Oil" },
-  { value: "Paint", label: "Car Paint" },
+  { value: "Filter", label: "Car Filter" },
 ];
 
 const sortOptions = [
@@ -131,7 +132,7 @@ const matchesAvailability =
  }, [search, category, sort, priceRange, availability]);
 
   // Separate products into category sections
-  const categories = ["Brake", "Oil", "Paint"];
+  const categories = ["Brake", "Oil", "Filter"];
 
   // Add item to browser's local cart
   function addToCart(product) {
@@ -153,15 +154,18 @@ const matchesAvailability =
     alert(`${product.name} added to cart!`);
   }
 
-  // Buy Now opens the product detail page
-  function buyNow(product) {
-    if (product.stock <= 0) {
-      alert("This product is currently out of stock.");
-      return;
-    }
-
-    window.location.href = `/spare-parts/${product.id}`;
+ 
+ // Buy Now opens the product detail page
+function buyNow(product) {
+  if (product.stock <= 0) {
+    alert("This product is currently out of stock.");
+    return;
   }
+
+  window.location.href =
+    `/spare-parts/${product.category}/${product.id}`;
+}
+
 
   return (
     <main className="spare-page">
@@ -262,7 +266,7 @@ const matchesAvailability =
                         ? "Brake Parts"
                         : cat === "Oil"
                         ? "Engine Oil"
-                        : "Car Paint"}
+                        : "Air Filter"}
                     </h2>
                   </div>
 
@@ -273,10 +277,10 @@ const matchesAvailability =
                   {categoryProducts.map((product) => (
                     <article className="spare-card" key={product.id}>
                       {/* Product image opens details */}
-                      <Link
-                        to={`/spare-parts/${product.id}`}
-                        className="spare-card-image"
-                      >
+                     <Link
+  to={`/spare-parts/${product.category}/${product.id}`}
+  className="spare-card-image"
+>
                         <span className="spare-category-badge">
                           {product.category}
                         </span>
@@ -285,12 +289,15 @@ const matchesAvailability =
                       </Link>
 
                       <div className="spare-card-info">
-                        <Link
-                          to={`/spare-parts/${product.id}`}
-                          className="spare-product-name"
-                        >
+                       <Link
+  to={`/spare-parts/${product.category}/${product.id}`}
+  className="spare-product-name"
+>
                           {product.name}
                         </Link>
+                         <p className="spare-description">
+                          {product.description}
+                        </p>
 
                         <p className="spare-product-price">
                           ₹{product.price.toLocaleString("en-IN")}

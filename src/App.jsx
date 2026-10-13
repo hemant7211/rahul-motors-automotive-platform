@@ -6,7 +6,7 @@ import Services from "./pages/services/Services";
 import Washing from "./pages/washing/Washing";
 import Modification from "./pages/modification/Modification";
 import SpareParts from "./pages/spare/Spareparts";
-// import SpareProductDetails from "./pages/spare/SpareProductDetails";
+import SpareProductDetails from "./pages/spare/Spareproductdetails";
 
 // function UsedCars() {
 //   return <h1>Used Cars Page</h1>;
@@ -24,16 +24,12 @@ function App() {
   return (
     <BrowserRouter>
       <Navbar />
-
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/services" element={<Services />} />
         <Route path="/washing" element={<Washing />} />
         <Route path="/spare-parts" element={<SpareParts />} />
-      {/* <Route
-        path="/spare-parts/:id"
-        element={<SpareProductDetails />}
-      /> */}
+        <Route path="/spare-parts/:category/:id"element={<SpareProductDetails />}/>
         <Route path="/rental-cars" element={<RentalCars />} />
         <Route path="/modification" element={<Modification />} />
       </Routes>

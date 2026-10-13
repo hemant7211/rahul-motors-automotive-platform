@@ -281,7 +281,7 @@ function Home() {
         {/* why you choose us */}
         <section>
           <div className="choose">
-            <h1>⚙︎ ── 🔧 Why Rahul Motors 🔧 ── ⚙︎</h1>
+            <h1>⚙︎ ─ 🔧 Why Rahul Motors 🔧 ─ ⚙︎</h1>
             <h3>Your Car , Our Responsibility</h3>
           </div>
           <div className="choose-container">

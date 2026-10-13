@@ -306,7 +306,7 @@ const Washing = () => {
 
         <img
           className="washing-hero-image"
-          src="/wash/exterior.webp"
+          src="/wash/hero.webp"
           alt="Professional car washing service"
         />
 

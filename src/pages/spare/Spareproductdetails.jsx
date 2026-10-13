@@ -1,14 +1,19 @@
 
 import { Link, useParams } from "react-router-dom";
 import Products from "./Productdata";
-import "./SpareProductDetails.css";
+import "./Spareproductdetails.css";
 
 function SpareProductDetails() {
   // Read product ID from URL
-  const { id } = useParams();
+  const { id,category } = useParams();
 
   // Find the matching product
-  const product = Products.find((item) => item.id === Number(id));
+  // const product = Products.find((item) => item.id === Number(id));
+  const product = Products.find(
+  (item) =>
+    item.id === Number(id) &&
+    item.category.toLowerCase() === category.toLowerCase()
+);
 
   // Handle invalid product URL
   if (!product) {
@@ -45,13 +50,13 @@ Product ID: ${product.id}`;
   return (
     <main className="sp-detail-page">
       {/* Breadcrumb navigation */}
-      <nav className="sp-breadcrumb">
+      {/* <nav className="sp-breadcrumb">
         <Link to="/">Home</Link>
         <span>/</span>
         <Link to="/spare-parts">Spare Parts</Link>
         <span>/</span>
         <span>{product.name}</span>
-      </nav>
+      </nav> */}
 
       {/* Product image + information */}
       <section className="sp-detail-layout">

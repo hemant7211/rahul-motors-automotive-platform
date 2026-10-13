@@ -164,7 +164,7 @@
 
 /* Product image */
 .spare-card-image {
-  height: 205px;
+  height: 220px;
   display: block;
   position: relative;
   background: #fff;
@@ -174,14 +174,14 @@
 .spare-card-image img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
-  padding: 12px;
+  object-fit: fill;
+  /* padding: 10px; */
   transition: transform 0.3s ease;
 }
-
+/* 
 .spare-card:hover .spare-card-image img {
   transform: scale(1.05);
-}
+} */
 
 .spare-category-badge {
   position: absolute;
@@ -196,16 +196,26 @@
   font-weight: 700;
 }
 
+/* Product description */
+.spare-description {
+display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 /* Product information */
 .spare-card-info {
-  padding: 17px;
+  padding: 5px 10px;
 }
 
 .spare-product-name {
   display: block;
   color: #181818;
   text-decoration: none;
-  font-size: 16px;
+  font-size: 26px;
   font-weight: 700;
   min-height: 40px;
 }
@@ -215,14 +225,14 @@
 }
 
 .spare-product-price {
-  color: #e87b14;
+  color: #35e013;
   font-size: 21px;
   font-weight: 800;
-  margin: 10px 0;
+  margin: 5px 0;
 }
 
 .sp-in-stock {
-  color: #16834a;
+  color: #fd1100;
   font-size: 13px;
   font-weight: 700;
 }
@@ -237,13 +247,13 @@
 .spare-card-actions {
   display: flex;
   flex-direction: column;
-  gap: 9px;
-  margin-top: 16px;
+  gap: 5px;
+  margin-top: 10px;
 }
 
 .spare-card-actions button {
   width: 100%;
-  min-height: 40px;
+  min-height: 35px;
   border-radius: 6px;
   cursor: pointer;
   font-weight: 700;
@@ -265,10 +275,6 @@
   color: #111;
   background: #ff8b22;
   border: 1px solid #ff8b22;
-}
-
-.spare-buy-btn:hover {
-  background: #ff9d40;
 }
 
 .spare-card-actions button:disabled {
