@@ -1,0 +1,51 @@
+/* Signup-specific layout */
+
+.signup-container {
+  min-height: 760px;
+}
+
+.signup-form-wrapper {
+  max-width: 390px;
+}
+
+.signup-form-wrapper .auth-back-link {
+  margin-bottom: 24px;
+}
+
+.signup-form-wrapper h2 {
+  margin-top: 10px;
+}
+
+.signup-form-wrapper .auth-description {
+  margin-bottom: 22px;
+}
+
+.signup-form-wrapper .auth-form {
+  gap: 15px;
+}
+
+.signup-form-wrapper .auth-field {
+  gap: 7px;
+}
+
+.signup-form-wrapper .auth-field input {
+  height: 45px;
+}
+
+.signup-form-wrapper .auth-submit-btn {
+  margin-top: 7px;
+}
+
+@media (max-width: 760px) {
+  .signup-container {
+    min-height: auto;
+  }
+
+  .signup-form-wrapper .auth-back-link {
+    margin-bottom: 22px;
+  }
+
+  .signup-form-wrapper .auth-form {
+    gap: 15px;
+  }
+}

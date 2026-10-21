@@ -1,10 +1,14 @@
-import { useEffect, useMemo, useRef, useState } from "react";
 
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import Footer from "../../components/footer/Footer";
 import Products from "./Productdata";
+import { useCart } from "../../context/CartContext";
+import CartDrawer from "./CartDrawer";
 import "./Spareparts.css";
 
-// Custom dropdown (native select ka white rectangle bug hatane ke liye)
+// ==================== CUSTOM DROPDOWN ====================
+
 function CustomSelect({ value, onChange, options }) {
   const [open, setOpen] = useState(false);
   const ref = useRef(null);
@@ -15,8 +19,12 @@ function CustomSelect({ value, onChange, options }) {
         setOpen(false);
       }
     }
+
     document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
   }, []);
 
   const selected = options.find((opt) => opt.value === value);
@@ -27,6 +35,7 @@ function CustomSelect({ value, onChange, options }) {
         type="button"
         className="custom-select-btn"
         onClick={() => setOpen(!open)}
+        aria-expanded={open}
       >
         <span>{selected ? selected.label : ""}</span>
         <span className="custom-select-arrow">▾</span>
@@ -56,18 +65,27 @@ function CustomSelect({ value, onChange, options }) {
   );
 }
 
+// ==================== CATEGORY OPTIONS ====================
+
 const categoryOptions = [
   { value: "All", label: "All Categories" },
-  { value: "Brake", label: "Brake Parts" },
-  { value: "Oil", label: "Engine Oil" },
-  { value: "Filter", label: "Car Filter" },
+  ...Array.from(
+    new Set(Products.map((product) => product.category))
+  ).map((cat) => ({
+    value: cat,
+    label: cat,
+  })),
 ];
+
+// ==================== SORT OPTIONS ====================
 
 const sortOptions = [
   { value: "default", label: "Default" },
   { value: "low", label: "Price: Low to High" },
   { value: "high", label: "Price: High to Low" },
 ];
+
+// ==================== PRICE OPTIONS ====================
 
 const priceOptions = [
   { value: "all", label: "All Prices" },
@@ -77,51 +95,72 @@ const priceOptions = [
   { value: "above5000", label: "Above ₹5,000" },
 ];
 
+// ==================== AVAILABILITY OPTIONS ====================
+
 const availabilityOptions = [
   { value: "all", label: "All Products" },
   { value: "inStock", label: "In Stock" },
   { value: "outOfStock", label: "Out of Stock" },
 ];
 
+// ==================== SPARE PARTS PAGE ====================
+
 function SpareParts() {
+  const { addToCart } = useCart();
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("All");
-  const [sort, setSort] = useState("default");  
+  const [sort, setSort] = useState("default");
   const [priceRange, setPriceRange] = useState("all");
   const [availability, setAvailability] = useState("all");
 
+  // Mobile filter panel
+  const [mobileFilterOpen, setMobileFilterOpen] = useState(false);
 
-  // Search + category filter + price sorting
+  // ==================== ALL CATEGORIES ====================
+
+  const categories = useMemo(
+    () => [...new Set(Products.map((product) => product.category))],
+    []
+  );
+
+  // ==================== SEARCH AND FILTER ====================
+
   const filteredProducts = useMemo(() => {
     let result = Products.filter((product) => {
+      const searchText = search.toLowerCase();
+
       const matchesSearch =
-        product.name.toLowerCase().includes(search.toLowerCase()) ||
-        product.category.toLowerCase().includes(search.toLowerCase());
+        product.name.toLowerCase().includes(searchText) ||
+        product.category.toLowerCase().includes(searchText);
 
       const matchesCategory =
         category === "All" || product.category === category;
-// price range and availability
- 
-const matchesPrice =
-  priceRange === "all" ||
-  (priceRange === "under500" && product.price < 500) ||
-  (priceRange === "500to1000" && product.price >= 500 && product.price <= 1000) ||
-  (priceRange === "1000to5000" && product.price > 1000 && product.price <= 5000) ||
-  (priceRange === "above5000" && product.price > 5000);
 
-const matchesAvailability =
-  availability === "all" ||
-  (availability === "inStock" && product.stock > 0) ||
-  (availability === "outOfStock" && product.stock <= 0);
+      const matchesPrice =
+        priceRange === "all" ||
+        (priceRange === "under500" && product.price < 500) ||
+        (priceRange === "500to1000" &&
+          product.price >= 500 &&
+          product.price <= 1000) ||
+        (priceRange === "1000to5000" &&
+          product.price > 1000 &&
+          product.price <= 5000) ||
+        (priceRange === "above5000" && product.price > 5000);
+
+      const matchesAvailability =
+        availability === "all" ||
+        (availability === "inStock" && product.stock > 0) ||
+        (availability === "outOfStock" && product.stock <= 0);
 
       return (
-  matchesSearch &&
-  matchesCategory &&
-  matchesPrice &&
-  matchesAvailability
-);
+        matchesSearch &&
+        matchesCategory &&
+        matchesPrice &&
+        matchesAvailability
+      );
     });
 
+    // Price sorting
     if (sort === "low") {
       result.sort((a, b) => a.price - b.price);
     } else if (sort === "high") {
@@ -129,83 +168,105 @@ const matchesAvailability =
     }
 
     return result;
- }, [search, category, sort, priceRange, availability]);
+  }, [search, category, sort, priceRange, availability]);
 
-  // Separate products into category sections
-  const categories = ["Brake", "Oil", "Filter"];
+  // ==================== BUY NOW ====================
 
-  // Add item to browser's local cart
-  function addToCart(product) {
+  function buyNow(product) {
     if (product.stock <= 0) {
-      alert("Sorry, this product is out of stock.");
+      alert("This product is currently out of stock.");
       return;
     }
 
-    const cart = JSON.parse(localStorage.getItem("rahulCart") || "[]");
-    const existing = cart.find((item) => item.id === product.id);
-
-    if (existing) {
-      existing.quantity += 1;
-    } else {
-      cart.push({ ...product, quantity: 1 });
-    }
-
-    localStorage.setItem("rahulCart", JSON.stringify(cart));
-    alert(`${product.name} added to cart!`);
+    window.location.href =
+      `/spare-parts/${encodeURIComponent(product.category)}/${product.id}`;
   }
 
- 
- // Buy Now opens the product detail page
-function buyNow(product) {
-  if (product.stock <= 0) {
-    alert("This product is currently out of stock.");
-    return;
+  // ==================== CLEAR FILTERS ====================
+
+  function clearFilters() {
+    setSearch("");
+    setCategory("All");
+    setSort("default");
+    setPriceRange("all");
+    setAvailability("all");
   }
 
-  window.location.href =
-    `/spare-parts/${product.category}/${product.id}`;
-}
-
+  // ==================== PAGE UI ====================
 
   return (
-    <main className="spare-page">
-      {/* HERO + SEARCH */}
-      <section className="spare-hero">
-        <p className="spare-eyebrow">RAHUL MOTORS • SPARE PARTS</p>
+    <>
+      <main className="spare-page">
+        {/* HERO SECTION */}
+        <section className="spare-hero">
+          <p className="spare-eyebrow">
+            Built For The Road
+          </p>
 
-        <h1>
-          Find The Right <span>Parts</span>
-        </h1>
+          <h1>
+            Find The Right <span>Parts</span>
+          </h1>
 
-        <p className="spare-subtitle">
-          Quality spare parts for your car, all in one place.
-        </p>
+          <p className="spare-subtitle">
+            Quality spare parts for your car, all in one place.
+          </p>
+        </section>
 
-        {/* Search box */}
-        <div className="spare-search">
-          <span className="search-icon">⌕</span>
+        {/* SEARCH + MOBILE FILTER ICON */}
+        <div className="spare-search-row">
+          <div className="spare-search">
+            <span className="search-icon">⌕</span>
 
-          <input
-            type="text"
-            placeholder="Search brake pad, disc, oil..."
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-          />
+            <input
+              type="text"
+              placeholder="Search brake pad, disc, oil..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+            />
 
-          <button type="button" onClick={() => {}}>
-            Search
+            <button type="button" onClick={() => {}}>
+              Search
+            </button>
+          </div>
+
+          {/* Mobile-only filter button */}
+          <button
+            type="button"
+            className="mobile-filter-btn"
+            onClick={() => setMobileFilterOpen(!mobileFilterOpen)}
+            aria-label="Toggle filters"
+            aria-expanded={mobileFilterOpen}
+          >
+            <svg
+              width="22"
+              height="22"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M4 7h16" />
+              <path d="M7 12h10" />
+              <path d="M10 17h4" />
+            </svg>
+
+            <span>Filter</span>
           </button>
         </div>
 
-        {/* Category and sorting options */}
-        
-        
-        {/* All product filters */}
-        <div className="spare-filters">
-
-          {/* 1. Category Filter */}
+        {/* ALL PRODUCT FILTERS */}
+        <div
+          className={`spare-filters ${
+            mobileFilterOpen ? "mobile-filters-open" : ""
+          }`}
+        >
+          {/* Category filter */}
           <div className="spare-filter-field">
             Category
+
             <CustomSelect
               value={category}
               onChange={setCategory}
@@ -213,9 +274,10 @@ function buyNow(product) {
             />
           </div>
 
-          {/* 2. Sort By Filter */}
+          {/* Sort filter */}
           <div className="spare-filter-field">
             Sort By
+
             <CustomSelect
               value={sort}
               onChange={setSort}
@@ -223,9 +285,10 @@ function buyNow(product) {
             />
           </div>
 
-          {/* 3. Price Range Filter */}
+          {/* Price filter */}
           <div className="spare-filter-field spare-price-filter">
             Price Range
+
             <CustomSelect
               value={priceRange}
               onChange={setPriceRange}
@@ -233,9 +296,10 @@ function buyNow(product) {
             />
           </div>
 
-          {/* 4. Availability Filter */}
+          {/* Availability filter */}
           <div className="spare-filter-field spare-availability-filter">
             Availability
+
             <CustomSelect
               value={availability}
               onChange={setAvailability}
@@ -243,121 +307,159 @@ function buyNow(product) {
             />
           </div>
         </div>
-      </section>
 
-      {/* PRODUCT COLLECTIONS */}
-      <section className="spare-collection">
-        {categories
-          .filter((cat) => category === "All" || category === cat)
-          .map((cat) => {
-            const categoryProducts = filteredProducts.filter(
-              (product) => product.category === cat
-            );
+        {/* ==================== PRODUCT COLLECTIONS ==================== */}
 
-            if (categoryProducts.length === 0) return null;
+        <section className="spare-collection">
+          <p className="products">ALL PRODUCTS</p>
 
-            return (
-              <div className="spare-category-section" key={cat}>
-                <div className="spare-section-heading">
-                  <div>
-                    <p className="spare-eyebrow">OUR COLLECTION</p>
-                    <h2>
-                      {cat === "Brake"
-                        ? "Brake Parts"
-                        : cat === "Oil"
-                        ? "Engine Oil"
-                        : "Air Filter"}
-                    </h2>
+          {categories
+            .filter(
+              (cat) => category === "All" || category === cat
+            )
+            .map((cat) => {
+              const categoryProducts = filteredProducts.filter(
+                (product) => product.category === cat
+              );
+
+              // Empty category section show nahi hoga.
+              if (categoryProducts.length === 0) {
+                return null;
+              }
+
+              return (
+                <div
+                  className="spare-category-section"
+                  key={cat}
+                >
+                  {/* Category heading */}
+                  <div className="spare-section-heading">
+                    <div>
+                      <h2>{cat} -</h2>
+                    </div>
+
+                    <span>
+                      {categoryProducts.length} Products Found
+                    </span>
                   </div>
 
-                  <span>{categoryProducts.length} Products Found</span>
-                </div>
+                  {/* Product cards */}
+                  <div className="spare-product-grid">
+                    {categoryProducts.map((product) => (
+                      <article
+                        className="spare-card"
+                        key={`${product.category}-${product.id}`}
+                      >
+                        {/* Product image */}
+                        <Link
+                          to={`/spare-parts/${encodeURIComponent(
+                            product.category
+                          )}/${product.id}`}
+                          className="spare-card-image"
+                        >
+                          <img
+                            src={product.image}
+                            alt={product.name}
+                          />
+                        </Link>
 
-                <div className="spare-product-grid">
-                  {categoryProducts.map((product) => (
-                    <article className="spare-card" key={product.id}>
-                      {/* Product image opens details */}
-                     <Link
-  to={`/spare-parts/${product.category}/${product.id}`}
-  className="spare-card-image"
->
-                        <span className="spare-category-badge">
-                          {product.category}
+                        <div className="spare-card-info">
+                          {/* Product name */}
+                          <Link
+                            to={`/spare-parts/${encodeURIComponent(
+                              product.category
+                            )}/${product.id}`}
+                            className="spare-product-name"
+                          >
+                            {product.name}
+                          </Link>
+
+                          {/* Description */}
+                          <p className="spare-description">
+                            {product.description}
+                          </p>
+
+                          {/* Price */}
+                          <p className="spare-product-price">
+                            ₹{product.price.toLocaleString("en-IN")}
+                          </p>
+
+                          {/* Stock status */}
+                          <p
+                            className={
+                              product.stock > 0
+                                ? "sp-in-stock"
+                                : "sp-out-stock"
+                            }
+                          >
+                            {product.stock > 0
+                              ? "In Stock"
+                              : "Out of Stock"}
+                          </p>
+
+                          {/* Action buttons */}
+                          <div className="spare-card-actions">
+                            <button
+                              className="spare-add-btn"
+                              onClick={() => addToCart(product)}
+                              disabled={product.stock <= 0}
+                            >
+                              Add to Cart
+                            </button>
+
+                            <button
+                              className="spare-buy-btn"
+                              onClick={() => buyNow(product)}
+                              disabled={product.stock <= 0}
+                            >
+                              Buy Now
+                            </button>
+                          </div>
+                        </div>
+                      </article>
+                    ))}
+                  </div>
+
+                  {/* Existing marquee */}
+                  {categories.indexOf(cat) === 4 && (
+                    <div className="spare-marquee">
+                      <div className="spare-marquee-track">
+                        <span>
+                          RAHUL MOTORS ✦ QUALITY CAR PARTS ✦ TRUSTED
+                          AUTOMOTIVE SOLUTIONS ✦ GENUINE CARE FOR YOUR CAR ✦
                         </span>
 
-                        <img src={product.image} alt={product.name} />
-                      </Link>
-
-                      <div className="spare-card-info">
-                       <Link
-  to={`/spare-parts/${product.category}/${product.id}`}
-  className="spare-product-name"
->
-                          {product.name}
-                        </Link>
-                         <p className="spare-description">
-                          {product.description}
-                        </p>
-
-                        <p className="spare-product-price">
-                          ₹{product.price.toLocaleString("en-IN")}
-                        </p>
-
-                        <p
-                          className={
-                            product.stock > 0
-                              ? "sp-in-stock"
-                              : "sp-out-stock"
-                          }
-                        >
-                          {product.stock > 0 ? "In Stock" : "Out of Stock"}
-                        </p>
-
-                        <div className="spare-card-actions">
-                          <button
-                            className="spare-add-btn"
-                            onClick={() => addToCart(product)}
-                            disabled={product.stock <= 0}
-                          >
-                            Add to Cart
-                          </button>
-
-                          <button
-                            className="spare-buy-btn"
-                            onClick={() => buyNow(product)}
-                            disabled={product.stock <= 0}
-                          >
-                            Buy Now
-                          </button>
-                        </div>
+                        <span aria-hidden="true">
+                          RAHUL MOTORS ✦ QUALITY CAR PARTS ✦ TRUSTED
+                          AUTOMOTIVE SOLUTIONS ✦ GENUINE CARE FOR YOUR CAR ✦
+                        </span>
                       </div>
-                    </article>
-                  ))}
+                    </div>
+                  )}
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
 
-        {/* Empty search result */}
-        {filteredProducts.length === 0 && (
-          <div className="spare-empty">
-            <h2>No products found</h2>
-            <p>Try another product name or select a different category.</p>
-            <button
-              onClick={() => {
-                setSearch("");
-                setCategory("All");
-                setSort("default");
-                setPriceRange("all");
-setAvailability("all");
-              }}
-            >
-              Clear Filters
-            </button>
-          </div>
-        )}
-      </section>
-    </main>
+          {/* Empty search result */}
+          {filteredProducts.length === 0 && (
+            <div className="spare-empty">
+              <h2>No products found</h2>
+
+              <p>
+                Try another product name or select a different category.
+              </p>
+
+              <button onClick={clearFilters}>
+                Clear Filters
+              </button>
+            </div>
+          )}
+        </section>
+      </main>
+
+      <Footer />
+       <CartDrawer />
+    </>
   );
 }
 

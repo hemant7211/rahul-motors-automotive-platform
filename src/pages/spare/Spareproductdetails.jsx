@@ -34,7 +34,7 @@ function SpareProductDetails() {
       return;
     }
 
-    const phone = "917027286512"; // Replace with Rahul Motors WhatsApp number
+    const phone = "919350877933"; // Replace with Rahul Motors WhatsApp number
 
     const message = `Hello Rahul Motors, I want to enquire about:
 Product: ${product.name}
@@ -61,7 +61,7 @@ Product ID: ${product.id}`;
       {/* Product image + information */}
       <section className="sp-detail-layout">
         <div className="sp-detail-image">
-          <span className="sp-detail-badge">{product.category}</span>
+          {/* <span className="sp-detail-badge">{product.category}</span> */}
 
           <img src={product.image} alt={product.name} />
         </div>

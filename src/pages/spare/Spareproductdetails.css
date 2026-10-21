@@ -1,43 +1,41 @@
 
-/* Detail page background */
+/* /* ===== Page ===== */
 .sp-detail-page {
   min-height: 100vh;
-  background: #101112;
+  background: #252424;
   color: #f7f7f7;
   padding: 30px 8% 60px;
   box-sizing: border-box;
 }
 
-/* Two-column product layout */
+/* ===== Layout ===== */
 .sp-detail-layout {
-  padding: 10px 10px 10px 10px;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 4%;
   align-items: start;
+  padding: 10px;
 }
-
-/* Large image panel */
+/* ===== Image box (same size for every product) ===== */
 .sp-detail-image {
   position: relative;
-  min-width: 0;
+  width: 100%;
   height: 490px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  box-sizing: border-box;
   overflow: hidden;
-   background: #1c1c1c;
-  border: 2px solid #0c0c0c; 
-  border-radius: 14px;
+  background: #fff;            /* white frame, product photos ke saath match karta hai */
+  border: 8px solid #d41f1f;
 }
 
-
 .sp-detail-image img {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: contain;         /* poori image dikhegi, crop nahi */
+  object-position: center;
   display: block;
-  padding: 16px;
+  padding: 12px;
   box-sizing: border-box;
 }
 
@@ -54,7 +52,7 @@
   font-weight: 700;
 }
 
-/* Product information */
+/* ===== Product info ===== */
 .sp-detail-info {
   min-width: 0;
 }
@@ -86,7 +84,6 @@
   margin-bottom: 32px;
 }
 
-/* Information rows */
 .sp-detail-row {
   display: flex;
   align-items: flex-start;
@@ -103,15 +100,10 @@
   overflow-wrap: anywhere;
 }
 
-.sp-detail-available {
-  color: #35d783;
-}
+.sp-detail-available   { color: #35d783; }
+.sp-detail-unavailable { color: #ff5555; }
 
-.sp-detail-unavailable {
-  color: #ff5555;
-}
-
-/* WhatsApp CTA */
+/* ===== WhatsApp button ===== */
 .sp-whatsapp-btn {
   width: 100%;
   margin-top: 12px;
@@ -126,16 +118,10 @@
   transition: background 0.2s ease;
 }
 
-.sp-whatsapp-btn:hover {
-  background: #ffa34d;
-}
+.sp-whatsapp-btn:hover     { background: #ffa34d; }
+.sp-whatsapp-btn:disabled  { cursor: not-allowed; opacity: 0.5; }
 
-.sp-whatsapp-btn:disabled {
-  cursor: not-allowed;
-  opacity: 0.5;
-}
-
-/* Continue shopping */
+/* ===== Continue shopping ===== */
 .sp-continue-link {
   display: inline-block;
   margin-top: 24px;
@@ -144,85 +130,202 @@
   font-size: 16px;
 }
 
-.sp-continue-link:hover {
-  text-decoration: underline;
-}
+.sp-continue-link:hover { text-decoration: underline; }
 
-/* Invalid product */
+/* ===== Not found ===== */
 .sp-not-found {
   padding: 80px 0;
   text-align: center;
 }
 
-.sp-not-found a {
-  color: #ff8b22;
-}
+.sp-not-found a { color: #ff8b22; }
 
-/* Tablet */
+/* ===== Tablet ===== */
 @media (max-width: 900px) {
-  .sp-detail-page {
-    padding: 0 5% 45px;
-  }
+  .sp-detail-page { padding: 20px 5% 45px; }
 
   .sp-detail-layout {
     grid-template-columns: 1fr;
     gap: 35px;
   }
 
-  .sp-detail-image {
-    height: 420px;
-  }
-
-  .sp-detail-info h1 {
-    font-size: 36px;
-  }
+  .sp-detail-info h1 { font-size: 36px; }
 }
 
-/* Mobile */
-@media (max-width: 380px) {
-  .sp-detail-page {
-    padding-top:80px 8% 60px;
-  }
+/* ===== Mobile ===== */
+@media (max-width: 460px) {
+  .sp-detail-page { padding: 16px 12px 40px; }
 
-  .sp-breadcrumb {
-    padding: 28px 0;
-    gap: 8px;
-    font-size: 12px;
-  }
+  .sp-detail-layout { padding: 0; }
 
-  .sp-detail-image {
-    height: 300px;
-    border-width: 7px;
-    border-radius: 10px;
-  }
-
-  .sp-detail-image img {
-    padding: 8px;
-  }
+  .sp-detail-image { border-width: 6px; }
 
   .sp-detail-eyebrow {
     font-size: 11px;
     letter-spacing: 1px;
   }
 
-  .sp-detail-info h1 {
-    font-size: 30px;
-  }
-
-  .sp-detail-price {
-    font-size: 28px;
-  }
+  .sp-detail-info h1    { font-size: 30px; }
+  .sp-detail-price      { font-size: 25px; }
 
   .sp-detail-row {
     font-size: 13px;
-    gap: 12px;
+    gap: 13px;
   }
 
-  .sp-detail-row strong {
-    max-width: 58%;
+  .sp-detail-row strong { max-width: 58%; }
+
+  .sp-whatsapp-btn { padding: 15px 10px; }
+} 
+
+.sp-detail-page {
+  min-height: 100vh;
+  background: #121212;
+  color: #f5f5f5;
+  padding: 40px 8% 60px;
+  box-sizing: border-box;
+}
+
+.sp-detail-layout {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 48px;
+  align-items: start;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Image panel: ek hi color, koi double box nahi */
+.sp-detail-image {
+  position: relative;
+  width: 100%;
+  height: 520px;
+  box-sizing: border-box;
+  overflow: hidden;
+  background: #f4f4f4;
+  border: 1px solid #2e2e2e;
+  border-radius: 14px;
+}
+
+.sp-detail-image img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  padding: 24px;
+  box-sizing: border-box;
+  object-fit: contain;
+  mix-blend-mode: multiply;   /* photo ka white/grey bg panel mein ghul jaata hai */
+}
+
+.sp-detail-badge {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  z-index: 1;
+  background: #121212;
+  color: #ff8b22;
+  padding: 7px 14px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.sp-detail-eyebrow {
+  color: #ff8b22;
+  letter-spacing: 3px;
+  font-size: 12px;
+  margin: 0 0 16px;
+}
+
+.sp-detail-info h1 {
+  font-size: clamp(30px, 3vw, 44px);
+  line-height: 1.15;
+  margin: 0 0 16px;
+  color: #fff;
+}
+
+.sp-detail-price {
+  color: #ff8b22;
+  font-size: 30px;
+  font-weight: 800;
+  margin: 0 0 20px;
+}
+
+.sp-detail-description {
+  color: #b5b5b5;
+  line-height: 1.7;
+  margin-bottom: 28px;
+}
+
+.sp-detail-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 16px 0;
+  border-top: 1px solid #2b2b2b;
+  font-size: 15px;
+}
+
+.sp-detail-row span   { color: #9a9a9a; }
+.sp-detail-row strong { color: #f5f5f5; text-align: right; max-width: 60%; }
+
+.sp-detail-available   { color: #35d783 !important; }
+.sp-detail-unavailable { color: #ff5555 !important; }
+
+.sp-whatsapp-btn {
+  width: 100%;
+  margin-top: 16px;
+  padding: 18px 16px;
+  background: #ff8b22;
+  color: #111;
+  border: none;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+
+.sp-whatsapp-btn:hover    { background: #ffa34d; }
+.sp-whatsapp-btn:active   { transform: scale(0.99); }
+.sp-whatsapp-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.sp-continue-link {
+  display: inline-block;
+  margin-top: 22px;
+  color: #ff8b22;
+  text-decoration: none;
+}
+.sp-continue-link:hover { text-decoration: underline; }
+@media (max-width: 900px) {
+  .sp-detail-layout { grid-template-columns: 1fr; gap: 28px; }
+  .sp-detail-image  { height: 420px; }
+}
+
+@media (max-width: 460px) {
+  .sp-detail-page {
+    padding: 90px 16px 40px;   /* 90px = navbar ki height + thodi jagah */
   }
 
-  .sp-whatsapp-btn {
-    padding: 16px 10px;
+  .sp-detail-layout {
+    padding: 2px;
+    gap: 24px;
   }
+
+  .sp-detail-image {
+    height: 300px;
+    border-radius: 12px;
+  }
+
+  .sp-detail-image img { padding: 16px; }
+
+  .sp-detail-eyebrow { font-size: 11px; letter-spacing: 1.5px; }
+  .sp-detail-info h1 { font-size: 28px; }
+  .sp-detail-price   { font-size: 24px; }
+  .sp-detail-row     { font-size: 13px; gap: 12px; }
+  .sp-detail-row strong { max-width: 58%; }
+  .sp-whatsapp-btn   { padding: 16px 10px; }
 }

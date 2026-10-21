@@ -1,416 +1,214 @@
-/* Main page */
-.spare-page {
-  min-height: 100vh;
-  background: #101112;
-  color: #fff;
+
+/* updated css  */
+
+/* ========================================
+   1. PAGE AND THEME
+======================================== */
+
+:root {
+  --sp-bg: #F5F6F8;
+  --sp-card-bg: #FFFFFF;
+  --sp-heading: #111827;
+  --sp-text: #374151;
+  --sp-muted: #6B7280;
+  --sp-border: #E5E7EB;
+  --sp-brand: #D97706;
+  --sp-button: #F97316;
 }
 
-/* Hero and search area */
+.spare-page {
+  min-height: 100vh;
+  background: var(--sp-bg);
+  color: var(--sp-text);
+}
+
+
+/* ========================================
+   2. HERO SECTION
+======================================== */
+
 .spare-hero {
-  padding: 80px 24px 48px;
-  text-align: center;
-  background: linear-gradient(145deg, #1d1f20, #101112);
-  border-bottom: 1px solid #303030;
+  position: relative;
+  isolation: isolate;
+  height: 70dvh;
+  min-height: 480px;
+  padding: 80px 24px 48px 12rem;
+  box-sizing: border-box;
+  overflow: hidden;
+
+  background: url("/spare/hero1.webp") center / cover no-repeat;
+  border-bottom: 1px solid var(--sp-border);
+  text-align: left;
+}
+
+/* Hero content image ke upar rahe */
+.spare-hero > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Bottom fade */
+.spare-hero::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 0;
+
+  width: 100%;
+  height: 180px;
+
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    var(--sp-bg)
+  );
+
+  pointer-events: none;
 }
 
 .spare-eyebrow {
-  color: #ff8b22;
-  font-size: 13px;
+  margin-bottom: 12px;
+  color: var(--sp-brand);
+  font-size: 30px;
   font-weight: 700;
   letter-spacing: 2px;
-  margin-bottom: 12px;
 }
 
 .spare-hero h1 {
+  max-width: 550px;
+  margin: 24px 0 18px;
+  color: #FFFFFF;
   font-size: clamp(32px, 4vw, 60px);
   font-weight: 800;
-  margin: 24px 0 18px;
+  line-height: 1.12;
+  overflow-wrap: break-word;
 }
 
 .spare-hero h1 span {
-  color: #ff8b22;
+  color: var(--sp-brand);
 }
 
 .spare-subtitle {
-  color: #b9bdc3;
+  max-width: 440px;
   margin-bottom: 34px;
+  color: #FFFFFF;
   font-size: 16px;
+  line-height: 1.6;
 }
 
-/* Search box */
+
+/* ========================================
+   3. SEARCH BAR AND FILTER BUTTON
+======================================== */
+
+.spare-search-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: calc(60% - 28px);
+  max-width: 1100px;
+  margin: 20px auto;
+}
+
 .spare-search {
-  max-width: 790px;
-  min-height: 64px;
-  margin: 0 auto;
-  padding: 8px;
   display: flex;
   align-items: center;
   gap: 12px;
-  background: #fff;
+
+  width: 100%;
+  max-width: 790px;
+  min-width: 0;
+  margin: 10px auto;
+  padding: 3px;
+  box-sizing: border-box;
+
+  /* background: var(--sp-card-bg); */
+  background-color: rgb(194, 194, 194);
+  border: 1px solid var(--sp-border);
   border-radius: 10px;
 }
 
+.spare-search-row .spare-search {
+  flex: 1;
+  margin: 0;
+}
+
 .search-icon {
-  color: #384252;
-  font-size: 27px;
-  padding-left: 10px;
+  flex-shrink: 0;
+  padding-left: 15px;
+  color: var(--sp-text);
+  font-size: 30px;
 }
 
 .spare-search input {
   flex: 1;
   min-width: 0;
-  height: 45px;
+  height: 40px;
+  padding: 0;
+
+  color: var(--sp-heading);
+  background: transparent;
   border: none;
   outline: none;
   font-size: 15px;
-  color: #222;
-  background: transparent;
+}
+
+.spare-search input::placeholder {
+  color: var(--sp-muted);
 }
 
 .spare-search button,
 .spare-empty button {
+  padding: 8px 20px;
+
+  color: #111827;
+  background: var(--sp-button);
   border: none;
-  background: #ff8b22;
-  color: #111;
+  border-radius: 16px;
+
   font-weight: 700;
-  padding: 15px 25px;
-  border-radius: 7px;
   cursor: pointer;
 }
 
-/* Filters under search */
-.spare-filters {
-  max-width: 790px;
-  margin: 18px auto 0;
-  display: flex;
-  justify-content: flex-start;
-  gap: 16px;
+.spare-search button:hover,
+.spare-empty button:hover {
+  background: var(--sp-brand);
 }
 
-.spare-filters label {
-  display: flex;
+/* Mobile par hi filter icon dikhega */
+.mobile-filter-btn {
+  display: none;
   align-items: center;
-  gap: 10px;
-  color: #d3d3d3;
+  justify-content: center;
+  gap: 6px;
+  flex-shrink: 0;
+
+  padding: 11px 12px;
+  color: var(--sp-heading);
+  background: var(--sp-card-bg);
+  border: 1px solid var(--sp-border);
+  border-radius: 9px;
+
   font-size: 14px;
-}
-
-.spare-filters select {
-  padding: 11px 14px;
-  min-width: 160px;
-  color: #030303;
-  background: #e19a0c;
-  border: 1px solid #454545;
-  border-radius: 7px;
-  outline: none;
-}
-/* Dropdown ke options */
-.spare-filters select option {
-  background-color: #000000;
-  color: #ffffff;
-}
-
-/* Collections */
-.spare-collection {
-  padding: 50px 40px 70px;
-}
-
-.spare-category-section {
-  margin-bottom: 55px;
-}
-
-.spare-section-heading {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  margin-bottom: 32px;
-}
-
-.spare-section-heading .spare-eyebrow {
-  margin-bottom: 8px;
-}
-
-.spare-section-heading h2 {
-  font-size: 32px;
-  margin: 0;
-}
-
-.spare-section-heading > span {
-  color: #b9bdc3;
-  font-size: 14px;
-}
-
-/* Responsive product grid */
-.spare-product-grid {
-  display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: 24px;
-}
-
-.spare-card {
-  min-width: 0;
-  overflow: hidden;
-  border-radius: 11px;
-  background: #fff;
-  color: #171717;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-.spare-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 30px #0005;
-}
-
-/* Product image */
-.spare-card-image {
-  height: 220px;
-  display: block;
-  position: relative;
-  background: #fff;
-  overflow: hidden;
-}
-
-.spare-card-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: fill;
-  /* padding: 10px; */
-  transition: transform 0.3s ease;
-}
-/* 
-.spare-card:hover .spare-card-image img {
-  transform: scale(1.05);
-} */
-
-.spare-category-badge {
-  position: absolute;
-  top: 14px;
-  left: 14px;
-  z-index: 1;
-  background: #ff8b22;
-  color: #111;
-  border-radius: 5px;
-  padding: 7px 12px;
-  font-size: 12px;
   font-weight: 700;
-}
-
-/* Product description */
-.spare-description {
-display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-/* Product information */
-.spare-card-info {
-  padding: 5px 10px;
-}
-
-.spare-product-name {
-  display: block;
-  color: #181818;
-  text-decoration: none;
-  font-size: 26px;
-  font-weight: 700;
-  min-height: 40px;
-}
-
-.spare-product-name:hover {
-  color: #e87b14;
-}
-
-.spare-product-price {
-  color: #35e013;
-  font-size: 21px;
-  font-weight: 800;
-  margin: 5px 0;
-}
-
-.sp-in-stock {
-  color: #fd1100;
-  font-size: 13px;
-  font-weight: 700;
-}
-
-.sp-out-stock {
-  color: #d83232;
-  font-size: 13px;
-  font-weight: 700;
-}
-
-/* Card buttons */
-.spare-card-actions {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  margin-top: 10px;
-}
-
-.spare-card-actions button {
-  width: 100%;
-  min-height: 35px;
-  border-radius: 6px;
   cursor: pointer;
-  font-weight: 700;
-  font-size: 13px;
-  transition: background 0.2s ease;
-}
-
-.spare-add-btn {
-  color: #ff8b22;
-  background: #fff;
-  border: 1px solid #ff8b22;
-}
-
-.spare-add-btn:hover {
-  background: #fff2e5;
-}
-
-.spare-buy-btn {
-  color: #111;
-  background: #ff8b22;
-  border: 1px solid #ff8b22;
-}
-
-.spare-card-actions button:disabled {
-  cursor: not-allowed;
-  opacity: 0.45;
-}
-
-/* No results */
-.spare-empty {
-  text-align: center;
-  padding: 60px 20px;
-  color: #d3d3d3;
-}
-
-/* Laptop */
-@media (max-width: 1200px) {
-  .spare-product-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-
-  .spare-collection {
-    padding-left: 28px;
-    padding-right: 28px;
-  }
-}
-
-/* Tablet */
-@media (max-width: 768px) {
-  .spare-hero {
-    padding: 55px 20px 35px;
-  }
-
-  .spare-filters {
-    flex-wrap: wrap;
-  }
-
-  .spare-filters label {
-    flex: 1;
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .spare-filters select {
-    width: 100%;
-    min-width: 0;
-  }
-
-  .spare-product-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 15px;
-  }
-
-  .spare-card-image {
-    height: 175px;
-  }
-
-  .spare-collection {
-    padding: 35px 18px 50px;
-  }
-
-  .spare-section-heading h2 {
-    font-size: 25px;
-  }
-}
-
-/* Small mobile */
-@media (max-width: 420px) {
-  .spare-hero {
-    padding: 42px 14px 28px;
-  }
-
-  .spare-hero h1 {
-    font-size: 33px;
-  }
-
-  .spare-search {
-    gap: 5px;
-  }
-
-  .spare-search input {
-    font-size: 12px;
-  }
-
-  .spare-search button {
-    padding: 13px 12px;
-    font-size: 12px;
-  }
-
-  .spare-filters {
-    flex-direction: column;
-  }
-
-  .spare-section-heading > span {
-    font-size: 11px;
-    text-align: right;
-  }
-
-  .spare-section-heading h2 {
-    font-size: 22px;
-  }
-
-  .spare-product-grid {
-    gap: 10px;
-  }
-
-  .spare-card-image {
-    height: 140px;
-  }
-
-  .spare-card-info {
-    padding: 11px;
-  }
-
-  .spare-product-name {
-    font-size: 14px;
-  }
-
-  .spare-product-price {
-    font-size: 18px;
-  }
-
-  .spare-card-actions button {
-    font-size: 11px;
-    padding: 8px 3px;
-  }
 }
 
 
+/* ========================================
+   4. FILTERS
+======================================== */
 
 .spare-filters {
-  max-width: 1100px;
-  margin: 20px auto;
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
+  align-items:end;
   gap: 16px;
-  align-items: end;
+
+  width: 100%;
+  max-width: 1100px;
+  margin: 20px auto;
 }
 
 .spare-filters label,
@@ -419,66 +217,65 @@ display: -webkit-box;
   flex-direction: column;
   gap: 8px;
   min-width: 0;
-  color: #d3d3d3;
-  font-size: 14px;
+
+  color: var(--sp-text);
+  font-size: 15px;
+  text-align: center;
 }
 
 .spare-filters select {
   width: 100%;
   min-width: 0;
-  box-sizing: border-box;
   padding: 12px;
-  color: #fff;
-  background: #202224;
-  border: 1px solid #454545;
+  box-sizing: border-box;
+
+  color: var(--sp-heading);
+  background: var(--sp-card-bg);
+  border: 1px solid var(--sp-border);
   border-radius: 7px;
   outline: none;
 }
 
 .spare-filters select:focus {
-  border-color: #ff8b22;
+  border-color: var(--sp-brand);
 }
 
-/* Tablet */
-@media (max-width: 768px) {
-  .spare-filters {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
+.spare-filters select option {
+  color: var(--sp-heading);
+  background: var(--sp-card-bg);
 }
 
-/* Small mobile */
-@media (max-width: 360px) {
-  .spare-filters {
-    grid-template-columns: 2fr;
-  }
-}
 
 /* Custom dropdown */
+
 .custom-select {
   position: relative;
   width: 100%;
+  min-width: 0;
 }
 
 .custom-select-btn {
-  width: 100%;
-  box-sizing: border-box;
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  width: 100%;
   padding: 12px;
-  color: #fff;
-  background: #202224;
-  border: 1px solid #454545;
+  box-sizing: border-box;
+
+  color: var(--sp-heading);
+  background: var(--sp-card-bg);
+  border: 1px solid var(--sp-border);
   border-radius: 7px;
+
   font-size: 14px;
-  cursor: pointer;
-  outline: none;
   text-align: left;
+  cursor: pointer;
 }
 
 .custom-select-btn:focus,
 .custom-select-btn:hover {
-  border-color: #ff8b22;
+  border-color: var(--sp-brand);
 }
 
 .custom-select-arrow {
@@ -492,29 +289,529 @@ display: -webkit-box;
   left: 0;
   right: 0;
   z-index: 50;
+
   margin: 0;
   padding: 4px 0;
   list-style: none;
-  background: #000;
-  border: 1px solid #454545;
+
+  background: var(--sp-card-bg);
+  border: 1px solid var(--sp-border);
   border-radius: 7px;
-  box-shadow: 0 10px 25px #0008;
+  box-shadow: 0 10px 25px #11182715;
   text-align: left;
 }
 
 .custom-select-item {
   padding: 10px 12px;
-  color: #fff;
+  color: var(--sp-text);
   font-size: 14px;
   cursor: pointer;
 }
 
 .custom-select-item:hover {
-  background: #2a2c2e;
+  background: #FFF2E5;
 }
 
 .custom-select-item.active {
-  background: #ff8b22;
-  color: #111;
+  color: #FFFFFF;
+  background: var(--sp-brand);
   font-weight: 700;
+}
+
+
+/* ========================================
+   5. PRODUCT COLLECTION
+======================================== */
+
+.spare-collection {
+  padding: 0 40px 70px;
+  background: var(--sp-bg);
+  color: var(--sp-text);
+}
+
+.products {
+  color: var(--sp-brand);
+  font-size: 25px;
+  font-weight: 700;
+}
+
+.spare-category-section {
+  margin-bottom: 55px;
+}
+
+.spare-section-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 15px;
+}
+
+.spare-section-heading .spare-eyebrow {
+  margin-bottom: 8px;
+}
+
+.spare-section-heading h2 {
+  margin: 0;
+  color: var(--sp-heading);
+  font-size: 32px;
+}
+
+.spare-section-heading > span {
+  color: var(--sp-muted);
+  font-size: 14px;
+}
+
+
+/* ========================================
+   6. PRODUCT GRID AND CARDS
+======================================== */
+
+.spare-product-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.spare-card {
+  min-width: 0;
+  overflow: hidden;
+
+  color: var(--sp-text);
+  background: var(--sp-card-bg);
+  border: 1px solid var(--sp-border);
+  border-radius: 10px;
+  box-shadow: 0 2px 8px #11182708;
+}
+
+.spare-card:hover {
+  box-shadow: 0 12px 30px #11182715;
+}
+
+/* Product image */
+
+.spare-card-image {
+  position: relative;
+  display: block;
+  height: 220px;
+  overflow: hidden;
+  background: var(--sp-card-bg);
+}
+
+.spare-card-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Product information */
+
+.spare-card-info {
+  padding: 10px;
+  background: #EFEFEF;
+  border-top: 1px solid var(--sp-border);
+}
+
+.spare-product-name {
+  display: -webkit-box;
+  min-height: 35px;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+
+  color: var(--sp-heading);
+  font-size: 20px;
+  font-weight: 700;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+
+.spare-product-name:hover {
+  color: var(--sp-brand);
+}
+
+.spare-description {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+
+  color: var(--sp-muted);
+  font-size: 13px;
+  text-overflow: ellipsis;
+}
+
+.spare-product-price {
+  margin: 5px 0;
+  color: var(--sp-heading);
+  font-size: 21px;
+  font-weight: 800;
+}
+
+
+/* ========================================
+   7. STOCK AND PRODUCT BUTTONS
+======================================== */
+
+.sp-in-stock {
+  color: #15803D;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.sp-out-stock {
+  color: #DC2626;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.spare-card-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-top: 10px;
+}
+
+.spare-card-actions button {
+  width: 100%;
+  min-height: 35px;
+  padding: 8px 6px;
+  border-radius: 6px;
+
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.spare-add-btn {
+  color: var(--sp-brand);
+  background: var(--sp-card-bg);
+  border: 1px solid var(--sp-brand);
+}
+
+.spare-add-btn:hover {
+  background: #FFF2E5;
+}
+
+.spare-buy-btn {
+  color: #111827;
+  background: var(--sp-button);
+  border: 1px solid var(--sp-button);
+}
+
+.spare-buy-btn:hover {
+  background: var(--sp-brand);
+}
+
+.spare-card-actions button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+
+/* ========================================
+   8. EMPTY RESULTS
+======================================== */
+
+.spare-empty {
+  padding: 60px 20px;
+  color: var(--sp-text);
+  text-align: center;
+}
+
+
+/* ========================================
+   9. TABLET VIEW
+======================================== */
+
+@media (max-width: 1200px) {
+  .spare-product-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .spare-collection {
+    padding-right: 28px;
+    padding-left: 28px;
+  }
+
+  .spare-hero {
+    padding-left: 8rem;
+  }
+
+  .spare-filters {
+    width: calc(100% - 36px);
+  }
+}
+
+
+/* ========================================
+   10. MOBILE VIEW
+======================================== */
+
+@media (max-width: 768px) {
+
+  /* Hero image aur text */
+  .spare-hero {
+    height: auto;
+    min-height: 560px;
+    padding: 28px 20px 100px;
+
+    background-position: 58% center;
+    text-align: left;
+  }
+
+  .spare-hero h1 {
+    max-width: 330px;
+    margin: 28px 0 16px;
+    font-size: clamp(36px, 8vw, 48px);
+    line-height: 1.12;
+  }
+
+  .spare-subtitle {
+    max-width: 300px;
+    margin-bottom: 24px;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  .spare-hero::after {
+    height: 130px;
+  }
+
+  /* Search row */
+  .spare-search-row {
+    width: auto;
+    margin: 16px 14px;
+    gap: 8px;
+  }
+
+  .spare-search-row .spare-search {
+    max-width: none;
+    gap: 5px;
+    box-sizing: border-box;
+  }
+
+  .spare-search-row .spare-search input {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .spare-search-row .spare-search button {
+    display: none;
+  }
+
+  .mobile-filter-btn {
+    display: flex;
+  }
+
+  /* Filter panel by default hidden */
+  .spare-filters {
+    display: none;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+
+    width: auto;
+    max-width: none;
+    margin: 0 14px 20px;
+    padding: 14px;
+    box-sizing: border-box;
+
+    background: var(--sp-card-bg);
+    border: 1px solid var(--sp-border);
+    border-radius: 12px;
+  }
+
+  /* Filter icon click karne par open */
+  .spare-filters.mobile-filters-open {
+    display: grid;
+  }
+
+  .spare-filters .spare-filter-field,
+  .spare-filters .custom-select {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .spare-filters .custom-select-btn {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* Product grid */
+  .spare-product-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 15px;
+  }
+
+  .spare-collection {
+    padding: 30px 18px 50px;
+  }
+
+  .spare-card-image {
+    height: 175px;
+  }
+
+  .spare-section-heading h2 {
+    font-size: 25px;
+  }
+}
+
+
+/* ========================================
+   11. SMALL MOBILE
+======================================== */
+
+@media (max-width: 420px) {
+
+  .spare-hero {
+    min-height: 440px;
+    padding: 25px 16px 85px;
+    background-position: 58% center;
+  }
+
+  .spare-hero h1 {
+    max-width: 200px;
+    margin: 25px 0 14px;
+    font-size: clamp(34px, 9vw, 42px);
+    line-height: 1.12;
+  }
+
+  .spare-eyebrow {
+    font-size: 18px;
+    text-align: center;
+    letter-spacing: 2px;
+    margin-top: 5rem;
+  }
+
+  .spare-subtitle {
+    max-width: 280px;
+    font-size: 14px;
+  }
+
+  .spare-search-row {
+    margin: 14px 10px;
+    gap: 7px;
+  }
+
+  .spare-search {
+    gap: 4px;
+    background-color: rgb(255, 255, 255);
+  }
+
+  .search-icon {
+    padding-left: 8px;
+    font-size: 23px;
+  }
+
+  .spare-search input {
+    font-size: 12px;
+  }
+
+  .mobile-filter-btn {
+    gap: 4px;
+    padding: 10px 9px;
+    font-size: 12px;
+  }
+
+  .mobile-filter-btn svg {
+    width: 19px;
+    height: 19px;
+  }
+
+  .spare-filters {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    margin: 0 10px 18px;
+    padding: 10px;
+  }
+
+  .spare-filters label,
+  .spare-filters .spare-filter-field {
+    font-size: 12px;
+  }
+
+  .spare-filters .custom-select-btn,
+  .spare-filters select {
+    padding: 10px 8px;
+    font-size: 12px;
+  }
+
+  .spare-filters .custom-select-item {
+    padding: 9px 8px;
+    font-size: 12px;
+  }
+
+  .spare-collection {
+    padding: 25px 12px 40px;
+  }
+
+  .spare-product-grid {
+    gap: 10px;
+  }
+
+  .spare-card-image {
+    height: 140px;
+  }
+
+  .spare-card-info {
+    padding: 8px;
+  }
+
+  .spare-product-name {
+    font-size: 15px;
+  }
+
+  .spare-product-price {
+    font-size: 18px;
+  }
+
+  .spare-description {
+    font-size: 12px;
+  }
+
+  .spare-card-actions button {
+    min-height: 34px;
+    padding: 8px 3px;
+    font-size: 11px;
+  }
+
+  .spare-section-heading {
+    gap: 8px;
+  }
+
+  .spare-section-heading h2 {
+    font-size: 22px;
+  }
+
+  .spare-section-heading > span {
+    font-size: 11px;
+    text-align: right;
+  }
+}
+
+
+/* ========================================
+   12. EXTRA SMALL SCREENS
+======================================== */
+
+@media (max-width: 300px) {
+  .spare-filters {
+    grid-template-columns: 1fr;
+  }
+
+  .spare-hero h1 {
+    font-size: 32px;
+  }
+}
+
+
+/* ========================================
+   13. REDUCE UNNECESSARY ANIMATIONS
+======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .spare-card-image img {
+    transition: none;
+  }
 }

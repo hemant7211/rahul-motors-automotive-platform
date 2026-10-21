@@ -752,13 +752,13 @@ const Washing = () => {
           </h3>
 
           <p>
-            Automotive Solutions
+            Automotive Solutions By GLS Group
           </p>
 
         </div>
 
 
-        <div className="footer-links">
+        {/* <div className="footer-links">
 
           <a href="/">Home</a>
           <a href="/services">Services</a>
@@ -766,14 +766,14 @@ const Washing = () => {
           <a href="/gallery">Gallery</a>
           <a href="/contact">Contact</a>
 
-        </div>
+        </div> */}
 
 
-        <div className="footer-copy">
+        {/* <div className="footer-copy">
 
           © 2026 Rahul Motors. All rights reserved.
 
-        </div>
+        </div> */}
 
       </footer>
 
