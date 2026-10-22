@@ -6,8 +6,7 @@ import Home from "./pages/home/Home";
 import Services from "./pages/services/Services";
 import Washing from "./pages/washing/Washing";
 import Modification from "./pages/modification/Modification";
-
-import SpareParts from "./pages/spare/Spareparts";
+import SpareParts from "./pages/spare/Spareparts.jsx";
 import SpareProductDetails from "./pages/spare/Spareproductdetails";
 import Checkout from "./pages/spare/Checkout";
 import Cart from "./pages/spare/Cart";
