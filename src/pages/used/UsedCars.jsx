@@ -1,6 +1,6 @@
 
 import { useMemo, useState } from "react";
-import "./UsedCars.css";
+import "./Usedcars.css";
 
 // Demo listings: apni actual car details aur image filenames yahan update karna.
 const usedCars = [
