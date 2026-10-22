@@ -1,8 +1,10 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import Footer from "../../components/footer/Footer";
 import Products from "./Productdata";
+import Spareproductdetails from "./Spareproductdetails.jsx";
 import { useCart } from "../../context/CartContext";
 import CartDrawer from "./CartDrawer";
 import "./Spareparts.css";
@@ -171,16 +173,21 @@ function SpareParts() {
   }, [search, category, sort, priceRange, availability]);
 
   // ==================== BUY NOW ====================
-
+ const navigate = useNavigate();
   function buyNow(product) {
-    if (product.stock <= 0) {
-      alert("This product is currently out of stock.");
-      return;
-    }
-
-    window.location.href =
-      `/spare-parts/${encodeURIComponent(product.category)}/${product.id}`;
+  if (product.stock <= 0) {
+    alert("This product is currently out of stock.");
+    return;
   }
+
+  const category = encodeURIComponent(
+    product.category.toLowerCase()
+  );
+
+  navigate(
+    `/spare-parts/${category}/${product.id}`
+  );
+}
 
   // ==================== CLEAR FILTERS ====================
 
